@@ -3,7 +3,6 @@ local HOME = os.getenv'HOME'
 
 options.apply{
 	global = {
-		termguicolors = true,
 		hlsearch = false,
 		incsearch = true,
 		inccommand = 'nosplit',
