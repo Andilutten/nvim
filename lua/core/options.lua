@@ -9,7 +9,6 @@ options.apply{
 		hidden = true,
 		splitright = true,
 		splitbelow = true,
-		swapfile = false,
 		backup = false,
 		undofile = true,
 		undodir = HOME..'/.cache/vimundo',
@@ -28,6 +27,7 @@ options.apply{
 	buffer = {
 		tabstop = 4,
 		shiftwidth = 4,
-		expandtab = false
+		expandtab = false,
+		swapfile = false,
 	},
 }

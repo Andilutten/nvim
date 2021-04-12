@@ -5,8 +5,8 @@ local Color, colors, Group, groups = colorbuddy.setup()
 
 options.apply {
   global = {
-      termguicolors = true,
-      background = 'dark',
+    termguicolors = true,
+    background = 'dark',
   }
 }
 
@@ -14,4 +14,5 @@ colorbuddy.colorscheme('onebuddy')
 
 Group.new('EndOfBuffer', colors.syntax_bg, colors.syntax_bg)
 
+require'bufferline'.setup{}
 require'colorizer'.setup{}

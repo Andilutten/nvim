@@ -1,6 +1,8 @@
 local lspconfig = require'lspconfig'
 local keymaps = require'util.keymaps'
 local options = require'util.options'
+local rusttools = require'rust-tools'
+local fluttertools = require'flutter-tools'
 local api, fn = vim.api, vim.fn
 
 local on_attach = function(client)
@@ -37,6 +39,41 @@ for _, server in ipairs(servers) do
 	}
 end
 
+-- Flutter stuff
+fluttertools.setup {
+    experimental = {
+	lsp_derive_paths = true
+    },
+    -- flutter_lookup_cmd = 'echo $HOME/snap/flutter/common/flutter/bin/flutter',
+    lsp = {
+	on_attach = on_attach
+    }
+}
+
+require("telescope").load_extension("flutter")
+
+-- Rust stuff
+rusttools.setup {}
+
+lspconfig.rust_analyzer.setup({
+    on_attach = on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {
+                importMergeBehavior = "last",
+                importPrefix = "by_self",
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
+ 
+-- Lua stuff
 local system_name = "Linux" -- (Linux, macOS, or Windows)
 local sumneko_root_path = os.getenv'HOME'..'/Source/lua-language-server'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
